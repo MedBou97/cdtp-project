@@ -1,13 +1,39 @@
+// src/App.jsx
+import React from 'react';
+import { useTelemetry } from './hooks/useTelemetry';
+import { useCameraVision } from './hooks/useCameraVision';
+import CameraView from './components/CameraView';
+import TelemetryHud from './components/TelemetryHud';
+import TestManager from './components/TestManager';
 
-function App() {
+export default function App() {
+  const { telemetry, isConnected } = useTelemetry();
+  const {
+    videoRef,
+    canvasRef,
+    visionState,
+    resetTrajectoryTracking,
+    stopTrajectoryTracking,
+  } = useCameraVision();
 
   return (
-    <>
-    <p className="text-3xl font-bold underline">
-      Hello world!
-    </p>
-    </>
-  )
-}
+    <div className="flex flex-col md:flex-row h-screen w-screen bg-slate-950 overflow-hidden font-sans">
+      {/* Primary Video Feed with Floating HUD */}
+      <CameraView videoRef={videoRef} canvasRef={canvasRef}>
+        <TelemetryHud
+          telemetry={telemetry}
+          isConnected={isConnected}
+          visionState={visionState}
+        />
+      </CameraView>
 
-export default App
+      {/* Right/Bottom Control Panel & Audit Manager */}
+      <TestManager
+        telemetry={telemetry}
+        visionState={visionState}
+        onStartTracking={resetTrajectoryTracking}
+        onStopTracking={stopTrajectoryTracking}
+      />
+    </div>
+  );
+}
