@@ -1,5 +1,5 @@
 // src/components/TestManager.jsx
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { Play, Square, ShieldCheck, ShieldAlert, FileText } from 'lucide-react';
 import { generateReportDigest } from '../utils/reportCrypto';
 import { ARUCO_CONFIG } from '../config';
@@ -85,7 +85,7 @@ export default function TestManager({
   };
 
   return (
-    <div className="w-80 md:w-96 bg-slate-900 border-l border-slate-800 p-5 flex flex-col justify-between overflow-y-auto h-full text-slate-100">
+    <div className="mobile-safe-bottom flex h-auto w-full shrink-0 flex-col justify-start gap-4 overflow-visible border-t border-slate-800 bg-slate-900 p-4 text-slate-100 md:h-full md:w-80 md:justify-between md:gap-0 md:overflow-y-auto md:border-l md:border-t-0 md:p-5 lg:w-96">
       <div>
         <div className="flex items-center gap-2 mb-4">
           <FileText className="text-cyan-400 w-5 h-5" />
@@ -103,7 +103,7 @@ export default function TestManager({
             disabled={isTesting}
             value={selectedTask}
             onChange={(e) => setSelectedTask(e.target.value)}
-            className="w-full bg-slate-950 border border-slate-700 text-xs text-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-cyan-500"
+            className="min-h-11 w-full rounded-lg border border-slate-700 bg-slate-950 p-2.5 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none"
           >
             <option value="Static Balance">Module A: Static Balance (30s)</option>
             <option value="Robot Guidance">Module B: Guidance (0.8m - 1.2m)</option>
@@ -116,14 +116,14 @@ export default function TestManager({
         {!isTesting ? (
           <button
             onClick={handleStart}
-            className="w-full flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2.5 px-4 rounded-lg text-xs transition duration-200 cursor-pointer shadow-lg shadow-emerald-500/20"
+            className="min-h-11 w-full flex items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 py-2.5 text-xs font-bold text-slate-950 shadow-lg shadow-emerald-500/20 transition duration-200 hover:bg-emerald-600 cursor-pointer"
           >
             <Play className="w-4 h-4 fill-current" /> START SCORED TEST
           </button>
         ) : (
           <button
             onClick={handleEnd}
-            className="w-full flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white font-bold py-2.5 px-4 rounded-lg text-xs transition duration-200 cursor-pointer animate-pulse shadow-lg shadow-red-500/20"
+            className="min-h-11 w-full flex items-center justify-center gap-2 rounded-lg bg-red-500 px-4 py-2.5 text-xs font-bold text-white shadow-lg shadow-red-500/20 transition duration-200 hover:bg-red-600 cursor-pointer animate-pulse"
           >
             <Square className="w-4 h-4 fill-current" /> END TEST & GRADE ({elapsedSeconds}s)
           </button>
@@ -133,7 +133,7 @@ export default function TestManager({
       {/* Tamper-Evident Report Card */}
       {report && (
         <div
-          className={`mt-4 p-4 rounded-xl border text-xs flex flex-col gap-2 ${
+          className={`mt-0 flex flex-col gap-2 rounded-xl border p-4 text-xs md:mt-4 ${
             report.passed
               ? 'bg-emerald-950/30 border-emerald-600/50 text-emerald-200'
               : 'bg-red-950/30 border-red-600/50 text-red-200'

@@ -1,5 +1,4 @@
 // src/App.jsx
-import React from 'react';
 import { useTelemetry } from './hooks/useTelemetry';
 import { useCameraVision } from './hooks/useCameraVision';
 import CameraView from './components/CameraView';
@@ -17,7 +16,7 @@ export default function App() {
   } = useCameraVision();
 
   return (
-    <div className="flex flex-col md:flex-row h-screen w-screen bg-slate-950 overflow-hidden font-sans">
+    <div className="flex min-h-dvh w-full flex-col overflow-x-hidden bg-slate-950 font-sans md:h-dvh md:w-screen md:flex-row md:overflow-hidden">
       {/* Primary Video Feed with Floating HUD */}
       <CameraView videoRef={videoRef} canvasRef={canvasRef}>
         <TelemetryHud

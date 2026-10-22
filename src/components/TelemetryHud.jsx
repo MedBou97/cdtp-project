@@ -1,12 +1,11 @@
 // src/components/TelemetryHud.jsx
-import React from 'react';
 import { Wifi, WifiOff, Battery, Compass, Zap, Navigation } from 'lucide-react';
 
 export default function TelemetryHud({ telemetry, isConnected, visionState }) {
   return (
-    <div className="absolute top-4 left-4 bg-slate-900/85 backdrop-blur-md p-4 rounded-xl border border-slate-700/60 shadow-xl text-slate-100 min-w-[270px]">
+    <div className="mobile-safe-top absolute z-10 w-[calc(100%-1.5rem)] max-w-[280px] rounded-xl border border-slate-700/60 bg-slate-900/85 p-3 text-slate-100 shadow-xl backdrop-blur-md sm:w-auto sm:max-w-none sm:min-w-[270px] sm:p-4">
       {/* Connection & Watchdog Status */}
-      <div className="flex items-center gap-2 mb-3 pb-2 border-b border-slate-700/50">
+      <div className="mb-2 flex items-center gap-2 border-b border-slate-700/50 pb-2 sm:mb-3">
         {isConnected ? (
           <Wifi className="text-emerald-400 w-5 h-5 animate-pulse" />
         ) : (
@@ -22,7 +21,7 @@ export default function TelemetryHud({ telemetry, isConnected, visionState }) {
       </div>
 
       {/* Hardware Telemetry */}
-      <div className="flex flex-col gap-2 text-xs">
+      <div className="flex flex-col gap-1.5 text-xs sm:gap-2">
         <div className="flex items-center justify-between">
           <span className="flex items-center gap-1.5 text-slate-400">
             <Compass className="w-4 h-4 text-cyan-400" /> Tilt Angle:
