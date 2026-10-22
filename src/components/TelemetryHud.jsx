@@ -3,7 +3,7 @@ import { Wifi, WifiOff, Battery, Compass, Zap, Navigation } from 'lucide-react';
 
 export default function TelemetryHud({ telemetry, isConnected, visionState }) {
   return (
-    <div className="mobile-safe-top absolute z-10 w-[calc(100%-1.5rem)] max-w-[280px] rounded-xl border border-slate-700/60 bg-slate-900/85 p-3 text-slate-100 shadow-xl backdrop-blur-md sm:w-auto sm:max-w-none sm:min-w-[270px] sm:p-4">
+    <div className="w-full shrink-0 border-t border-slate-700/60 bg-slate-900 p-3 text-slate-100 sm:p-4">
       {/* Connection & Watchdog Status */}
       <div className="mb-2 flex items-center gap-2 border-b border-slate-700/50 pb-2 sm:mb-3">
         {isConnected ? (

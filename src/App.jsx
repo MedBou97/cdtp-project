@@ -17,16 +17,15 @@ export default function App() {
 
   return (
     <div className="flex min-h-dvh w-full flex-col overflow-x-hidden bg-slate-950 font-sans md:h-dvh md:w-screen md:flex-row md:overflow-hidden">
-      {/* Primary Video Feed with Floating HUD */}
-      <CameraView videoRef={videoRef} canvasRef={canvasRef}>
+      <div className="flex min-h-0 w-full flex-col md:h-full md:flex-1">
+        <CameraView videoRef={videoRef} canvasRef={canvasRef} />
         <TelemetryHud
           telemetry={telemetry}
           isConnected={isConnected}
           visionState={visionState}
         />
-      </CameraView>
+      </div>
 
-      {/* Right/Bottom Control Panel & Audit Manager */}
       <TestManager
         telemetry={telemetry}
         visionState={visionState}
