@@ -1,5 +1,6 @@
 // src/components/TelemetryHud.jsx
 import { Wifi, WifiOff, Battery, Compass, Zap, Navigation } from 'lucide-react';
+import { ARUCO_CONFIG } from '../config';
 
 export default function TelemetryHud({ telemetry, isConnected, visionState }) {
   return (
@@ -59,18 +60,33 @@ export default function TelemetryHud({ telemetry, isConnected, visionState }) {
 
         {/* Vision Tracking Telemetry */}
         <div className="flex items-center justify-between">
+          <span className="text-slate-400">
+            Robot Marker (ID {ARUCO_CONFIG.ROBOT_MARKER_ID}):
+          </span>
+          <span
+            className={`rounded px-1.5 py-0.5 text-[10px] font-semibold ${
+              visionState.robotDetected
+                ? 'border border-emerald-500/40 bg-emerald-500/20 text-emerald-300'
+                : 'bg-slate-800 text-slate-400'
+            }`}
+          >
+            {visionState.robotDetected ? 'DETECTED' : 'NOT DETECTED'}
+          </span>
+        </div>
+
+        <div className="flex items-center justify-between">
           <span className="flex items-center gap-1.5 text-slate-400">
             <Navigation className="w-4 h-4 text-purple-400" /> Motion State:
           </span>
           <span className="font-semibold text-slate-100">
-            {visionState.motionState}
+            {visionState.robotDetected ? visionState.motionState : 'Not tracking'}
           </span>
         </div>
 
         <div className="flex items-center justify-between">
           <span className="text-slate-400">Direction:</span>
           <span className="font-semibold text-purple-300">
-            {visionState.direction}
+            {visionState.robotDetected ? visionState.direction : '—'}
           </span>
         </div>
 
